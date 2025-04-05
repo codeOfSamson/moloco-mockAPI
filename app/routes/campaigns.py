@@ -11,3 +11,7 @@ def create_campaign(campaign: Campaign):
 @router.get("/")
 def get_campaigns():
     return campaign_service.get_campaigns()
+
+@router.post("/{campaign_id}/run")
+def run_campaign(campaign_id: str):
+    return campaign_service.run_campaign(campaign_id);
