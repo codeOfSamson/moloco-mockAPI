@@ -22,3 +22,9 @@ def attach_creative_groups(campaign_id: str, data: AttachGroupsRequest):
         return campaign_service.attach_creative_groups(campaign_id, data.creative_group_ids)
     # except ValueError:
         # raise HTTPException(status_code=404, detail="Campaign not found")
+@router.get("/{campaign_id}/full")
+def get_full_campaign(campaign_id: str):
+    # try:
+        return campaign_service.get_full_campaign(campaign_id)
+    # except ValueError:
+        # raise HTTPException(status_code=404, detail="Campaign not found")
