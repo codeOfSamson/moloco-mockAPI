@@ -10,7 +10,7 @@ class Creative(BaseModel):
 class CreativeGroup(BaseModel):
     creative_group_id: Optional[str] = None 
     name: str
-    creatives: List[str]
+    creative_ids: List[str]
 
 # Need to get new FE to save in BE nested models or id
 class Campaign(BaseModel):
@@ -19,3 +19,6 @@ class Campaign(BaseModel):
     creative_group_ids: List[str]  
     status: str = "paused"
     impressions: int = 0
+
+class AttachGroupsRequest(BaseModel):
+    creative_group_ids: List[str]

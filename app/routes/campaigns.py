@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from app.models import Campaign
+from app.models import Campaign, AttachGroupsRequest
 from app.services import campaign_service
 
 router = APIRouter()
@@ -16,9 +16,9 @@ def get_campaigns():
 def run_campaign(campaign_id: str):
     return campaign_service.run_campaign(campaign_id);
 
-@router.put("/{campaign_id}")
-def update_campaign(campaign_id: str, updated_campaign: Campaign):
+@router.put("/{campaign_id}/attach-groups")
+def attach_creative_groups(campaign_id: str, data: AttachGroupsRequest):
     # try:
-        return campaign_service.update_campaign(campaign_id, updated_campaign)
+        return campaign_service.attach_creative_groups(campaign_id, data.creative_group_ids)
     # except ValueError:
-    #     raise HTTPException(status_code=404, detail="Campaign not found")
+        # raise HTTPException(status_code=404, detail="Campaign not found")
