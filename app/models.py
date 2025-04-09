@@ -11,7 +11,10 @@ class CreativeGroup(BaseModel):
     creative_group_id: Optional[str] = None 
     name: str
     creative_ids: List[str]
-    creatives: Optional[List[Creative]] = []  
+    creatives: Optional[List[Creative]] = [] 
+    impressions: Optional[int] = 0
+    clicks: Optional[int] = 0
+    conversions: Optional[int] = 0 
 
 
 class Campaign(BaseModel):
@@ -25,3 +28,6 @@ class Campaign(BaseModel):
 
 class AttachGroupsRequest(BaseModel):
     creative_group_ids: List[str]
+
+class ChampionAddRequest(BaseModel):
+    group_id: str

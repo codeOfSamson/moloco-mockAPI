@@ -1,8 +1,12 @@
-from fastapi import APIRouter
-from app.models import Campaign, AttachGroupsRequest
+from fastapi import APIRouter, HTTPException
+from app.models import Campaign, AttachGroupsRequest, ChampionAddRequest
 from app.services import campaign_service
+from typing import Dict, List
+
 
 router = APIRouter()
+
+champion_waitlist: List[str] = []
 
 @router.post("/")
 def create_campaign(campaign: Campaign):
@@ -18,13 +22,26 @@ def run_campaign(campaign_id: str):
 
 @router.put("/{campaign_id}/attach-groups")
 def attach_creative_groups(campaign_id: str, data: AttachGroupsRequest):
-    # try:
+    try:
         return campaign_service.attach_creative_groups(campaign_id, data.creative_group_ids)
-    # except ValueError:
-        # raise HTTPException(status_code=404, detail="Campaign not found")
+    except ValueError:
+        raise HTTPException(status_code=404, detail="Campaign not found")
 @router.get("/{campaign_id}/full")
 def get_full_campaign(campaign_id: str):
-    # try:
+    try:
         return campaign_service.get_full_campaign(campaign_id)
-    # except ValueError:
-        # raise HTTPException(status_code=404, detail="Campaign not found")
+    except ValueError:
+        raise HTTPException(status_code=404, detail="Campaign not found")
+
+@router.post("/champion-waitlist/add")
+def add_to_champion_waitlist(data: ChampionAddRequest):
+    group_id = data.group_id
+    if group_id not in champion_waitlist:
+        champion_waitlist.append(group_id)
+    return {"message": "Added to champion waitlist", "waitlist": champion_waitlist}
+
+@router.get("/champion-waitlist")
+def get_champion_waitlist():
+    return {
+        "group_ids": champion_waitlist
+    }

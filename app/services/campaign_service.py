@@ -14,10 +14,25 @@ def get_campaigns():
 def run_campaign(campaign_id: str):
     for campaign in campaigns_db:
         if campaign.campaign_id == campaign_id:
-            campaign.impressions += randint(5000, 15000) 
             campaign.status = "completed"
+            campaign.impressions = 0
+
+            enriched_groups = []
+            for group_id in campaign.creative_group_ids:
+                group = next((g for g in creative_groups_db if g.creative_group_id == group_id), None)
+                if group:
+                    # Enrich with performance metrics
+                    group.impressions = 10_000
+                    group.clicks = randint(1000, 3000)
+                    group.conversions = randint(100, group.clicks)
+
+                    campaign.impressions += group.impressions
+                    enriched_groups.append(group)
+
+            campaign.creative_groups = enriched_groups
+
             return {"message": "Campaign run completed", "campaign": campaign}
-    
+
     return {"error": "Campaign not found"}
 
 def attach_creative_groups(campaign_id: str, group_ids: List[str]):
