@@ -2,11 +2,10 @@ from fastapi import APIRouter, HTTPException
 from app.models import Campaign, AttachGroupsRequest, ChampionAddRequest
 from app.services import campaign_service
 from typing import Dict, List
+from app.database import champion_waitlist
 
 
 router = APIRouter()
-
-champion_waitlist: List[str] = []
 
 @router.post("/")
 def create_campaign(campaign: Campaign):
@@ -43,5 +42,5 @@ def add_to_champion_waitlist(data: ChampionAddRequest):
 @router.get("/champion-waitlist")
 def get_champion_waitlist():
     return {
-        "group_ids": champion_waitlist
+        "groups": campaign_service.get_champion_waitlist()
     }

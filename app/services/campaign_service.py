@@ -1,4 +1,4 @@
-from app.database import campaigns_db, creative_groups_db, creatives_db
+from app.database import campaigns_db, creative_groups_db, creatives_db, champion_waitlist
 from app.models import Campaign
 from random import randint
 from typing import List
@@ -65,3 +65,19 @@ def get_full_campaign(campaign_id: str):
             }
 
     raise ValueError("Campaign not found")
+
+def get_champion_waitlist():
+    # Get creative groups that are in the champion waitlist
+    groups = [
+        group for group in creative_groups_db
+        if group.creative_group_id in champion_waitlist
+    ]
+
+    # Attach full creative objects to each group
+    for group in groups:
+        group.creatives = [
+            creative for creative in creatives_db
+            if creative.creative_id in group.creative_ids
+        ]
+
+    return groups
