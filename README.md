@@ -1,4 +1,6 @@
-# moloco-mockAPI
+# Moloco-mockAPI
+This is a very simple mock-up based on some concepts from the Moloco ad platoform API Docs!
+
 Features:
 FastAPI Service Layer
 Clean separation of routes and service logic using FastAPI.
