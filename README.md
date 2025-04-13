@@ -33,8 +33,10 @@ Uses Pydantic models for validation and structure across the API.
  
 'python3 -m venv venv'
 then:
-'source venv/bin/activate'  # on Mac/Linux or
-'venv\Scripts\activate'     # on Windows
+'source venv/bin/activate'  if on Mac/Linux or
+'venv\Scripts\activate'    if on Windows
+
+(enter 'deactivate' in terminal to exit virtual environment)
 
 3)Install dependencies, run this command in terminal: 
 'pip install -r requirements.txt'
