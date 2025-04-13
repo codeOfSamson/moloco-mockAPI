@@ -30,8 +30,8 @@ Uses Pydantic models for validation and structure across the API.
 2) create a virtual environment, run this command in terminal:
  
 python3 -m venv venv
+then:
 source venv/bin/activate  # on Mac/Linux
-----
 venv\Scripts\activate     # on Windows
 
 3)Install dependencies, run this command in terminal: 
