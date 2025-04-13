@@ -46,3 +46,4 @@ then:
 'uvicorn app.main:app --reload'
 
 5) API will then be available on : http://127.0.0.1:8000
+6) See https://github.com/codeOfSamson/moloco-mock-frontend readme to set up frontend and run APP to access this api.
