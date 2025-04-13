@@ -31,7 +31,7 @@ Uses Pydantic models for validation and structure across the API.
  
 python3 -m venv venv
 source venv/bin/activate  # on Mac/Linux
-# OR
+----
 venv\Scripts\activate     # on Windows
 
 3)Install dependencies, run this command in terminal: 
