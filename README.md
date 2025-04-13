@@ -29,16 +29,16 @@ Uses Pydantic models for validation and structure across the API.
 1) Download zip or clone this repo and navigate to project folder
 2) create a virtual environment, run this command in terminal:
  
-python3 -m venv venv
+'python3 -m venv venv'
 then:
-source venv/bin/activate  # on Mac/Linux
-venv\Scripts\activate     # on Windows
+'source venv/bin/activate'  # on Mac/Linux or
+'venv\Scripts\activate'     # on Windows
 
 3)Install dependencies, run this command in terminal: 
-pip install -r requirements.txt
+'pip install -r requirements.txt'
 
 4) Run the server, run this command in terminal:
 
-uvicorn app.main:app --reload
+'uvicorn app.main:app --reload'
 
 5) API will then be available on : http://127.0.0.1:8000
